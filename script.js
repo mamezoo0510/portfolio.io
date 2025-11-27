@@ -19,21 +19,38 @@ document.addEventListener('DOMContentLoaded', () => {
     appearOnScroll.observe(fader);
   });
 });
+
+// ビデオ配置
 const videos = document.querySelectorAll(".video");
 const container = document.getElementById("video-container");
 
+const placed = []; // 配置済みの座標を保存
+
+function isOverlapping(x, y, w, h) {
+  return placed.some(v => {
+    return !(x + w < v.x || x > v.x + v.w || y + h < v.y || y > v.y + v.h);
+  });
+}
 
 videos.forEach(video => {
-  const maxX = container.clientWidth - video.offsetWidth;
-  const maxY = container.clientHeight - video.offsetHeight;
+  const w = video.offsetWidth;
+  const h = video.offsetHeight;
+  let x, y;
 
-  const randomX = Math.random() * maxX;
-  const randomY = Math.random() * maxY;
-  const randomScale = 0.5 + Math.random() * 1.5; // 0.5〜2倍
+  let attempts = 0;
+  do {
+    x = Math.random() * (container.clientWidth - w);
+    y = Math.random() * (container.clientHeight - h);
+    attempts++;
+    if(attempts > 100) break; // 無限ループ防止
+  } while (isOverlapping(x, y, w, h));
 
-  video.style.left = randomX + "px";
-  video.style.top = randomY + "px";
-  video.style.transform = `scale(${randomScale})`;
+  video.style.left = x + "px";
+  video.style.top = y + "px";
+
+  placed.push({x, y, w, h});
 });
+
+
 
 
