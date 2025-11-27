@@ -19,3 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
     appearOnScroll.observe(fader);
   });
 });
+const videos = document.querySelectorAll(".video");
+const container = document.getElementById("video-container");
+
+videos.forEach(video => {
+  const maxX = container.clientWidth - video.offsetWidth;
+  const maxY = container.clientHeight - video.offsetHeight;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  video.style.left = randomX + "px";
+  video.style.top = randomY + "px";
+});
