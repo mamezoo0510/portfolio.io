@@ -1,0 +1,58 @@
+/* 全体設定 */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 背景動画 */
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.5);
+}
+
+/* オーバーレイ */
+#overlay {
+  position: relative;
+  text-align: center;
+  padding-top: 20vh;
+}
+
+/* フェードイン */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* リスト装飾 */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  margin: 1rem 0;
+}
+
+a:hover {
+  text-decoration: underline;
+}
