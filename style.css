@@ -66,10 +66,8 @@ a:hover {
 
 .video {
   position: absolute;
-  width: 200px;
-  height: 120px;
+  width: 400px;   /* 大きめに変更 */
+  height: 225px;  /* 16:9比率を維持 */
   border: none;
-  /* 初期位置は左上 */
-  top: 0;
-  left: 0;
 }
+
