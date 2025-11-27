@@ -20,37 +20,43 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
 // ビデオ配置
-const videos = document.querySelectorAll(".video");
 const container = document.getElementById("video-container");
+const placed = [];
 
-const placed = []; // 配置済みの座標を保存
+// JSONを読み込む
+fetch("videos.json")
+  .then(response => response.json())
+  .then(videosData => {
+    videosData.forEach((video, i) => {
+      const w = video.width;
+      const h = video.height;
 
-function isOverlapping(x, y, w, h) {
-  return placed.some(v => {
-    return !(x + w < v.x || x > v.x + v.w || y + h < v.y || y > v.y + v.h);
-  });
-}
+      // 左右交互
+      const x = (i % 2 === 0) ? 50 : container.clientWidth - w - 50;
 
-videos.forEach(video => {
-  const w = video.offsetWidth;
-  const h = video.offsetHeight;
-  let x, y;
+      // y座標はランダムで重ならないように
+      let y;
+      let attempts = 0;
+      do {
+        y = Math.random() * (container.clientHeight - h);
+        attempts++;
+        if (attempts > 100) break;
+      } while (placed.some(v => !(x + w < v.x || x > v.x + v.w || y + h < v.y || y > v.y + v.h)));
 
-  let attempts = 0;
-  do {
-    x = Math.random() * (container.clientWidth - w);
-    y = Math.random() * (container.clientHeight - h);
-    attempts++;
-    if(attempts > 100) break; // 無限ループ防止
-  } while (isOverlapping(x, y, w, h));
+      const iframe = document.createElement("iframe");
+      iframe.src = video.url + "?autoplay=0&mute=1&loop=1&playlist=" + video.url.split("/").pop();
+      iframe.width = w;
+      iframe.height = h;
+      iframe.className = "video";
+      iframe.style.position = "absolute";
+      iframe.style.left = x + "px";
+      iframe.style.top = y + "px";
+      iframe.style.border = "none";
 
-  video.style.left = x + "px";
-  video.style.top = y + "px";
-
-  placed.push({x, y, w, h});
-});
-
-
-
-
+      container.appendChild(iframe);
+      placed.push({x, y, w, h});
+    });
+  })
+  .catch(err => console.error("JSON読み込みエラー:", err));
