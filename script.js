@@ -32,3 +32,17 @@ videos.forEach(video => {
   video.style.left = randomX + "px";
   video.style.top = randomY + "px";
 });
+
+videos.forEach(video => {
+  const maxX = container.clientWidth - video.offsetWidth;
+  const maxY = container.clientHeight - video.offsetHeight;
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+  const randomScale = 0.5 + Math.random() * 1.5; // 0.5〜2倍
+
+  video.style.left = randomX + "px";
+  video.style.top = randomY + "px";
+  video.style.transform = `scale(${randomScale})`;
+});
+
