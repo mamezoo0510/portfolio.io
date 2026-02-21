@@ -1,0 +1,40 @@
+.year-header {
+  cursor: pointer;
+  margin-top: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 5px 0;
+  border-bottom: 1px solid #555;
+}
+
+body {
+  background: #000;
+  color: #ffffff;
+  margin: 0;
+  font-family: sans-serif;
+}
+.year-header:hover {
+  opacity: 0.7;
+}
+
+.year-content {
+  margin-left: 20px; /* 子要素を少し右にずらす */
+  margin-top: 10px;
+}
+
+.work-link {
+  display: block;
+  margin-top: 10px;
+  color: rgb(107, 185, 107);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.work-link:hover {
+  text-decoration: underline;
+}
+#frame {
+  padding-left: 20px; /* 左余白 */
+  padding-right: 20px; /* 右余白 */
+  margin-bottom: 40px; /* 下に余白 */
+}

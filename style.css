@@ -1,23 +1,19 @@
 /* 全体設定 */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
   font-family: 'Arial', sans-serif;
-  color: white;
+  color: rgb(0, 0, 0);
   overflow-x: hidden;
 }
 
-/* 背景動画 */
-#bgVideo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  filter: brightness(0.5);
+body {
+  background: #000;
+  color: #ffffff;
+  margin: 0;
+  font-family: sans-serif;
 }
 
 /* オーバーレイ */
@@ -31,7 +27,9 @@ body, html {
 .fade {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
+  transition:
+    opacity 1s ease-out,
+    transform 1s ease-out;
 }
 
 .fade.visible {
@@ -57,17 +55,53 @@ a:hover {
   text-decoration: underline;
 }
 
-
 #video-container {
   position: relative;
   width: 100%;
   height: 100vh; /* ビューポートいっぱい */
 }
 
-.video {
-  position: absolute;
-  width: 400px;   /* 大きめに変更 */
-  height: 225px;  /* 16:9比率を維持 */
-  border: none;
+#gallery-link {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  margin: 20px;
+}
+.work-item {
+  padding-left: 20px; /* 左余白 */
+  padding-right: 20px; /* 右余白 */
+  margin-bottom: 40px; /* 下に余白 */
+}
+.work-item img {
+  width: 50%;
+  display: block;
+}
+#work-detail {
+  padding-left: 20px; /* 左余白 */
+  padding-right: 20px; /* 右余白 */
+  margin-bottom: 40px; /* 下に余白 */
 }
 
+/* -------------------------------------------------
+   フッター
+---------------------------------------------------*/
+#footer {
+  width: 100%;
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 30px;
+  border-top: 1px solid rgb(0, 0, 0);
+}
+
+.ps1-font {
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0);
+  letter-spacing: 0.6px;
+
+  filter: blur(1.5px) contrast(5);
+  text-shadow:
+    0px 0px 1px rgba(255, 255, 255, 0.8),
+    0px 0px 2px rgba(255, 255, 255, 0.4);
+}
